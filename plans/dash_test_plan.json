@@ -1,0 +1,81 @@
+{
+  "steps": [
+    {
+      "name": "Flash BIOS and image system",
+      "expected": "System should be flashed with the latest BIOS and show a GREEN screen at the end of the dashing procedure. System should reboot and unbundling should be successful.",
+      "keywords": [
+        "flashed with the latest BIOS",
+        "GREEN screen",
+        "reboot",
+        "unbundling"
+      ]
+    },
+    {
+      "name": "Set system date/time and add users",
+      "expected": "System should be unbundled. Admin and limited user accounts should be added.",
+      "keywords": [
+        "set the correct Date and Time",
+        "Add two new users",
+        "admin",
+        "limited account"
+      ]
+    },
+    {
+      "name": "Verify HP Power Manager logs in Event Viewer",
+      "expected": "There should be no error for pre-installed HP Power Manager in the Event Viewer logs.",
+      "keywords": [
+        "eventvwr.msc",
+        "Power Manager"
+      ]
+    },
+    {
+      "name": "Unhide files and extensions",
+      "expected": "All hidden files and extensions should be visible.",
+      "keywords": [
+        "Show hidden files",
+        "Hide extensions",
+        "Hide protected operating system files"
+      ]
+    },
+    {
+      "name": "Configure BSOD dump settings",
+      "expected": "Each BSOD should generate a kernel memory dump.",
+      "keywords": [
+        "Startup and Recovery",
+        "Kernel memory dump",
+        "Automatically restart"
+      ]
+    },
+    {
+      "name": "Verify Desktop Support Utilities presence",
+      "expected": "HP Desktop Support Utilities must be present after dashing.",
+      "keywords": [
+        "HP Desktop Support Utilities"
+      ]
+    },
+    {
+      "name": "Check for red screen and FAILURE.FLG",
+      "expected": "No red screen or FAILURE.FLG should be observed. If any, collect system.sav logs.",
+      "keywords": [
+        "red screen",
+        "FAILURE.FLG",
+        "system.sav"
+      ]
+    },
+    {
+      "name": "Check HP Hotkey app presence",
+      "expected": "HP Hotkey app must be present after dashing.",
+      "keywords": [
+        "HP Hotkey app"
+      ]
+    },
+    {
+      "name": "Verify app icon presence in Start menu and tray",
+      "expected": "App must be present in Start Menu and tray icon.",
+      "keywords": [
+        "Start menu",
+        "tray icon"
+      ]
+    }
+  ]
+}

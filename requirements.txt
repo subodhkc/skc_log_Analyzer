@@ -1,0 +1,25 @@
+# Core Framework
+# Streamlit Core
+streamlit>=1.28.0 # UI framework for interactive app
+
+# Data & Parsing
+pandas>=1.5.3            # Data manipulation and tabular display
+PyYAML>=6.0.1            # YAML parser for test plan files
+python-dateutil>=2.8.2   # Date parsing for various log formats
+
+# Redaction & Regex
+unicodedata2>=15.1.0     # Unicode handling for sanitizing log content
+
+# Visualization & Reporting
+matplotlib>=3.7.0         # Data visualization and graph plotting
+seaborn>=0.12.2           # Statistical visualization built on matplotlib
+fpdf2>=2.7.7              # PDF report generation module
+
+# AI & ML
+openai>=1.2.3             # Access to OpenAI APIs (GPT-based RCA)
+scikit-learn>=1.2.2       # ML models (SVM, decision trees, clustering)
+transformers              # Offline LLM for analysis
+torch                     # Backend for transformers-based LLMs
+
+# Compatibility Utilities
+difflib                   # Fuzzy matching utilities for test step alignment

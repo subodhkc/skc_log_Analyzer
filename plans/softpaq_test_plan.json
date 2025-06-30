@@ -1,0 +1,335 @@
+{
+  "steps": [
+    {
+      "name": "It is important the tester makes use of latest tools available for SP Testing:\n\n1. SPTest: Download the latest tool from -\\\\15.36.148.33\\fusion\\bkelley\n\n2. DPBCheck: https://pulsarweb.usa.hp.com/Pulsar/Component/Root/45588?layout=pulsar2\n\n3. Beyond Compare: https://www.scootersoftware.com/download.php\n\n4. HP System Software Manager (SSM): https://pulsarweb.usa.hp.com/Pulsar/Component/Root?Id=15842&layout=pulsar2",
+      "expected": "All the latest tools are downloaded and used for testing the Softpaq.",
+      "keywords": [
+        "latest",
+        "tools",
+        "downloaded",
+        "testing",
+        "softpaq."
+      ]
+    },
+    {
+      "name": "Note for Copyright info missing under exe file in a SoftPaq_x000D_\n_x000D_",
+      "expected": "The copyright field under the exe of a SoftPaq is left blank, and this is by Design._x000D_\nDO NOT file an OBS for this.",
+      "keywords": [
+        "copyright",
+        "field",
+        "under",
+        "softpaq",
+        "blank,",
+        "design._x000d_"
+      ]
+    },
+    {
+      "name": "Open CVA file in SoftPaq deliverable folder.",
+      "expected": "The CVA file must contain:\n\n1. Software Description in all supported languages\n\n2. SysID and SysName of the platform under test\n\n3. Private_SSMCompliant is 1\n\n4. DPB_Compliant=0 for Application and 1 for Driver\n\n5. Command for silent install\n\n6. Copyright 2018 HP Development Company, L.P.\n\n7. VendorName is HP\n\n8. VendorVersion=v.v.v.v",
+      "keywords": [
+        "contain:",
+        "software",
+        "description",
+        "supported",
+        "languages",
+        "sysid"
+      ]
+    },
+    {
+      "name": "Note: \n\n1. The tool does not replace the SoftPAQTest tool nor does this tool test anything on the system it is running in.\n\n2. Inspect the log file under \"Test Results\" section. If any part of \"Test Results\" indicates FAIL, stop testing and submit an OBS with the log file attached.",
+      "expected": "Noted.",
+      "keywords": [
+        "noted."
+      ]
+    },
+    {
+      "name": "1. Copy the the latest version of DPBCheck tool from Pulsar to test machine.\n\n2. Run DPBCheck.exe > set the destination anywhere you want > Next > Finish (The default location: C:\\Program Files (x86)\\HP\\DPBCheck)",
+      "expected": "DPB check tool is installed on the system.",
+      "keywords": [
+        "check",
+        "installed",
+        "system."
+      ]
+    },
+    {
+      "name": "1. Create a folder named SP12345 and copy the Softpaq and CVA file to be tested into this folder\n\n2. Copy this SP12345 folder into the DPBCheck folder (install path in step 2)\n\n3. Run the \"DPBCheck.exe\" as an Administrator > check the SP12345 in test > Start (Depends upon the size of the SoftPaq, it will take longer for the the tool to run with any SoftPaq that has larger size)\n\n4. When test is complete a SP12345_dpbcheck.log will be created in the SP12345 folder.",
+      "expected": "1. SP12345_dpbcheck.log will automatically launch when the tool is done checking.\u221a\n\n2. The tool will show PASS if the softpaq is a driver, and N/A otherwise.\n\nNOTE: In the CVA file of the softpaq, DPB_Compliant should be 0 for Application and 1 for Driver",
+      "keywords": [
+        "sp12345_dpbcheck.log",
+        "automatically",
+        "launch",
+        "checking.\u221a",
+        "softpaq",
+        "driver,"
+      ]
+    },
+    {
+      "name": "NOTE: \n\n1. This Test Plan is for EN Only. Notify Test Lead if you are testing any other language. Do not write an OBS against Softpaq test failures using languages other than EN. SoftPaq test tool does not support localization. \n\n2. Before performing SoftPaq testing on any clean OS install, make sure to verify if your deliverable has any hardware's and software's prerequisites before running SoftPaq testing. Consult with your test lead if you are not sure about software and hardware dependent. \n\n3. Certain deliverables will not correctly install in clean OS environment when dependencies of hardware and software are not met.\n\n4. SPECIAL NOTE: This only applies for Media Card and Smart Card Reader SoftPaq. There will be an expected error in TestResult.txt stating: \" ERROR - Invalid or missing Device ID type. Must begin with PCI, USB, ACPI, HID, SD or HDAUDIO. --> [Devices]- No device ID will be entered\".  This is FAD for Media Card and Smart Card Reader SoftPaq per PM. Do not write OBS for this specific error. The reason for this because HW IDs of the reader did not get generated in the CVA file due to the devices not being enumerated in Device Manager causing SPTest Tool to flag it as an error.\n \n5. If you receive a warning in the TestResults folder, that is okay.\n\n6. SPTest tool only supports US language.\n\n7. Make sure to save the Passing or Failing LOG file after the Test is complete. (This is for Testing History if there are any questions about our Testing results Downstream)\n\n8. For SoftPAQs that require Reboot: \n\nSoftPAQs that require a reboot must request the reboot using a 3010 result code.  HP SoftPAQTest will detect the result code and request the reboot of Windows to complete the install.    After the install, the tester must launch HP SoftPAQTest again to complete the test.  HP SoftPAQTest will automatically launch the SoftPAQ again to verify the targeting and provide the test results.",
+      "expected": "Noted.",
+      "keywords": [
+        "noted."
+      ]
+    },
+    {
+      "name": "Install SP Test tool on the UUT:\n\n1.  Copy the latest version of the 'SPTest Tool.exe' to the unit in test.\n\n2.  Create a folder on the desktop with the name of the SP.  Example: SP12345.\n\n3.  Copy the SoftPaq.exe and the Softpaq.CVA to be tested into the new SP folder.\n\n4.  The contents of the new SP folder should be as follows: (SP12345.exe and SP12345.cva)\n\n5.  Close the folder.  Install the SPTest Tool by double-clicking the .exe file\n\n6.  Click Yes on any UAC prompts. Verify an 'SPTest' folder was created on the desktop.",
+      "expected": "1.  The SPTest Tool is installed.\n\n\n\nThere are 2 options to unpack the SoftPaq:\n\n1. Unpack the files to a temporary location -  This option will unpack the SoftPaq to a temp. location and automatically remove all files after the setup is completed. \n\n2. Unpack the files to the location specified - This option will save these files to a specified location.",
+      "keywords": [
+        "sptest",
+        "installed.",
+        "there",
+        "options",
+        "unpack",
+        "softpaq:"
+      ]
+    },
+    {
+      "name": "1.  Open the SPTest folder. Move the SoftPaq folder (SP12345) into this SPTest folder.\n\n2.  Click Continue when prompted about providing administrator permissions.\n\n3. Verify the contents of the SPTest folder is now:\n\n      a.  bin\n      b.  Documentation\n      c.  SPxxxxx\n      d.  SP12345\n      e.  SoftPAQTest.exe\n\n4.  Run the 'SoftPAQTest.exe' by double-clicking. Click Yes on any UAC prompts.\n\n5.  When the 'HP SoftPAQ Test' program loads, verify you see SP12345 listed.\n\n6.  Check the box for the SP12345 deliverable. Click Submit.",
+      "expected": "1. Verify the SoftPAQ installation progress bar appears. Allow the Test to run.\n\n2.  At the end of the test, verify the TestResult document opens.\n\n3.  Scroll down the list to the 'Test Results' section.\n\n4.  Verify the following have no 'Errors' (warnings are okay): \n\n      a.  CVA Integrity Check\n      b.  Installation Check\n      c.  Targeting Check \n\n      If there is an error, write an OBS and attach the SP12345_TestResult.txt file (located in the SPTest\\SP12345 folder).",
+      "keywords": [
+        "verify",
+        "softpaq",
+        "installation",
+        "progress",
+        "appears.",
+        "allow"
+      ]
+    },
+    {
+      "name": "Verify the deliverable is installed.",
+      "expected": "The SPTest Tool can install the SoftPaq under test, in Control Panel and/OR Apps & Features.\n\nNo Errors are reported.",
+      "keywords": [
+        "sptest",
+        "install",
+        "softpaq",
+        "under",
+        "test,",
+        "control"
+      ]
+    },
+    {
+      "name": "Note: \n\n1. Can be downloaded 30-day trial version from: http://www.scootersoftware.com/download.php\n\n2. When running File Compare, make sure do not include any CVA files, release notes in the original flat files.",
+      "expected": "Noted.",
+      "keywords": [
+        "noted."
+      ]
+    },
+    {
+      "name": "1. Extract the SP12345:\n\na. Open the Run window: Win key + R.\n\nb. Type in the Run box: C:\\Users\\pea\\Desktop\\SP12345\\SP12345.exe -pdf -f C:\\Users\\pea\\Desktop\\SP12345\\new -s -e",
+      "expected": "This will extract the setup.exe of the deliverable from the softpaq package into \"new\" under \"SP12345\" folder in desktop.",
+      "keywords": [
+        "extract",
+        "setup.exe",
+        "deliverable",
+        "softpaq",
+        "package",
+        "\"new\""
+      ]
+    },
+    {
+      "name": "1.  Download the flat files of this deliverable from your deliverable archive, from when it was last put through a full functional test pass. Make sure it is the same version number as the SoftPaq deliverable version number.\n\n2.  Install Beyond Compare onto the system.",
+      "expected": "The FF Test passed deliverable is downloaded._x000D_\n_x000D_\nBeyond Compare is installed on the system.",
+      "keywords": [
+        "passed",
+        "deliverable",
+        "downloaded._x000d_",
+        "_x000d_",
+        "beyond",
+        "compare"
+      ]
+    },
+    {
+      "name": "1.  Open Beyond Compare and select Compare option on the main screen.\n\n2.  Select the path containing original flat files from the full functional test pass.\n\n3.  Select the path containing setup.exe in the \"new\" folder created in Step 1 above.\n\n4.  Click Compare.\n\n5.  Verify there are no differences in file sizes or dates.",
+      "expected": "1. Once expanded, the actual deliverable files should not differ from the flat files that originally went through functional testing._x000D_\n_x000D_\n2. If there are differences with any of the bits, the file will be highlighted in Red. Get a screenshot and escalate the issue to your test lead.",
+      "keywords": [
+        "expanded,",
+        "actual",
+        "deliverable",
+        "files",
+        "should",
+        "differ"
+      ]
+    },
+    {
+      "name": "NOTE: \n\n1. There is a new EULA that is to be used for SoftPaq's.  To verify, scroll down to the bottom and verify you see Copyright 2011.  You should also see the text, First Edition: September 2011 with the following part number: 671823-371\n\n2. There is a new EULA that is to be used for SoftPaq's.  To verify, scroll down to the bottom and verify you see Copyright 2015.  You should also see the text, First Edition: November 2015 with the following part number: 826659-001.",
+      "expected": "Noted.",
+      "keywords": [
+        "noted."
+      ]
+    },
+    {
+      "name": "1. Uninstall Deliverable Software from UUT and Restart system. If no deliverable software installed in UUT, Pass this step and continue.\n\n2. Copy Deliverable SoftPaq to UUT\n\n3. Locate and launch Deliverable SoftPaq.\n\n4. Follow the on-screen prompts (XP):\n\n     a)  First screen displayed is a welcome screen with deliverable information - English is expected.\n\n     b)  Second screen displayed is License Agreement, tester must agree before Next button is enabled - English is expected.\n\n     c)  Third screen is Save files in folder, Default path is c:\\swsetup\\<softpaq number> - English is expected.\n\n     d)  Deliverable should begin installation process by launching InstallShield. - All screens from this point should be localized to the OS.\n\n5.Follow the on-screen prompts (Vista and Windows 7)\n\n     a)  First screen displayed is a User Account Control message box. Click \"Yes\" to continue installation.\n\n     b)  Second screen displayed is a 'Welcome to the InstallShield Wizard' screen or displays deliverable information \n(depending on application being installed)- English is expected. Click 'Next' to continue.\n\n     c)  Third screen displayed is a End User License Agreement, you must agree before Next button is enabled - English is expected. Click 'Next' to continue.\n\n     d)  Fourth screen is Save files in folder, Default path is c:\\swsetup\\<softpaq number> - English is expected. Click 'Next' to continue.\n\n     e)  Deliverable should begin installation process by launching InstallShield. - All screens from this point should be localized to the OS. Please follow the instructions on screen until the application is complete installing.\n\n6. After installation finishes, restart system:\n    a. If \"\"Restart\"\" is \"\"necessary\"\" for the deliverable installation as design, system will prompt to restart, select yes to restart system. \n\n    b. If \"\"Restart\"\" is not \"\"necessary\"\" for the deliverable installation as design,\"\" Restart Prompt\"\" will not pop up, restart system manually and notes in comments \"\"not prompt restart and restart system manually\"\".",
+      "expected": "The Final Finish screen is observed.\n\nLoud install should be successful.\n\nAfter system restarts, launch the application and make sure it opens without any errors.",
+      "keywords": [
+        "final",
+        "finish",
+        "screen",
+        "observed.",
+        "install",
+        "should"
+      ]
+    },
+    {
+      "name": "Note:\n\nDo not change or modify any contents in the CVA file.",
+      "expected": "Noted.",
+      "keywords": [
+        "noted."
+      ]
+    },
+    {
+      "name": "1. Extract the SP12345:\n\na. Open the Run window: Win key + R.\n\nb. Type in the Run box: C:\\Users\\pea\\Desktop\\SP12345\\SP12345.exe -pdf -f C:\\Users\\pea\\Desktop\\SP12345\\new -s -e",
+      "expected": "This will extract the setup.exe of the deliverable from the softpaq package into \"new\" under \"SP12345\" folder in desktop.",
+      "keywords": [
+        "extract",
+        "setup.exe",
+        "deliverable",
+        "softpaq",
+        "package",
+        "\"new\""
+      ]
+    },
+    {
+      "name": "1. Uninstall Deliverable Software from UUT and Restart system. If no deliverable software installed in UUT, skip this step and continue.\n\n2. Copy the SoftPaq SPxxxxx to UUT. Expand the SoftPaq to a location of your choice. (Ex: C:\\SPxxxxx)\n\n3. Open the SoftPaq's *.cva file (use NotePad to view the document).\n\n4. Search in the .cva file for, 'Silent installation instructions'.\n\n5. Copy the string, including all quotes, - and /.\n\n6. Open a Command Prompt, run As an Administrator and navigate to the location where you have extracted the setup.exe from the softpaq package.\n\n7. Right-click and select, 'Paste'.\n\n8. Verify what you pasted in matches the .cva file.\n\n9. Press Enter.\n\n10. Wait for 3-5 minutes for the software to install. (The bigger the application, the longer it will run)\n\n11. Restart the system.",
+      "expected": "1. The software should install in silent mode without any on-screen prompts or popups._x000D_\n_x000D_\n2. Verify you do not get any on-screen prompts or popups during installation._x000D_\n_x000D_\n3. Verify Deliverable was installed.",
+      "keywords": [
+        "software",
+        "should",
+        "install",
+        "silent",
+        "without",
+        "on-screen"
+      ]
+    },
+    {
+      "name": "Note: \n\nBefore performing SSM Upgrade Install, make sure there is a previous version of the current deliverable under test is already installed into the system. If previous version is not available, then skip this step.",
+      "expected": "Noted.",
+      "keywords": [
+        "noted."
+      ]
+    },
+    {
+      "name": "1. The CVA file needs to be placed in the same folder as the deliverable's executable. (Ex: setup.exe, etc...) \n\n2. Install latest version of SSM tool on the UUT.\n\n3. Copy the latest version of SSM.exe and SSM.CAB from the SSM install path, to the root directory of C:\\ in a folder named SSM.\n\n4. Navigate to deliverable under test (..\\{Deliverable's Name}\\) and copy the entire folder of {Deliverable's Name} to C:\\\n\n3. Ensure there is a previous version already installed in the system before executing SSM Upgrade Install.\n\n4. Open the Command Prompt (Vista/Win7- run as Administrator)\n\n5. Run the following command (underscores are spaces):\n     \n    C:\\SSM><SSM.exe <SSM_Path>  /a /d /log:<SSM_Path> \n\n    Example: C:\\SSM > SSM.exe C:\\SSM /a /d /log:C:\\SSM\n\n6. Check the SSM log files (in the C:\\SSM folder) for errors",
+      "expected": "1. After the SSM installation is complete, check the log file (on the C:\\SSM folder) and verify that the deliverable is listed under 'Possible Updates', as well as listed under 'Updates Performed', in the SSM log file.\n\n2. There should be no errors in the SSM log file.\n\n3. Running SSM Upgrade Install should upgrade from the old version to the new version without any errors or problems (check logs for this information).",
+      "keywords": [
+        "after",
+        "installation",
+        "complete,",
+        "check",
+        "c:\\ssm",
+        "folder)"
+      ]
+    },
+    {
+      "name": "Note:\n\n1. For more information on this test case, please look in the full functional test plan for the deliverable-under-test.\n\n2. Make sure to save the Passing or Failing LOG file after the Test is complete. (This is for Testing History if there are any questions about our Testing results Downstream)",
+      "expected": "Noted.",
+      "keywords": [
+        "noted."
+      ]
+    },
+    {
+      "name": "SSM First install:\n\n1. The CVA file needs to be placed in the same folder as the deliverable's executable. (Ex: setup.exe, etc...) \n\n2. Install latest version of SSM tool on the UUT.\n\n3. Copy the latest version of SSM.exe and SSM.CAB from the SSM install path, to the root directory of C:\\ in a folder named SSM.\n\n4. Navigate to deliverable under test (..\\{Deliverable's Name}\\) and copy the entire folder of {Deliverable's Name} to C:\\\n\n5. Open the Command Prompt (Vista/Win7- run as Administrator)\n\n6. Run the following command (underscores are spaces):\n     \n    C:\\SSM><SSM.exe <SSM_Path>  /a /d /log:<SSM_Path> \n\n    Example: C:\\SSM > SSM.exe C:\\SSM /a /d /log:C:\\SSM\n\n7. Check the SSM log files (in the C:\\SSM folder) for errors",
+      "expected": "1. After the SSM installation is complete, check the log file (on the C:\\SSM folder) and verify that the deliverable is listed under 'Possible Updates', as well as listed under 'Updates Performed', in the SSM log file.\n\n2. There should be no errors in the SSM log file.\n\n3. The deliverable should upgrade without any errors or problems (check logs for this information).",
+      "keywords": [
+        "after",
+        "installation",
+        "complete,",
+        "check",
+        "c:\\ssm",
+        "folder)"
+      ]
+    },
+    {
+      "name": "SSM Second install/Reinstall:\n\n1. Run the command once again:\n\n    C:\\SSM><SSM.exe <SSM_Path>  /a /d /log:<SSM_Path> \n\n    Example: C:\\SSM > SSM.exe C:\\SSM /a /d /log:C:\\SSM\n\n2.  Locate and open the SSMTrace log file, and ensure at the bottom it says: the .cva file is older than or the same as the installed version.",
+      "expected": "1.  After the SSM installation is complete, check the log file (C:\\ SSM folder) and verify that the deliverable is listed under 'Possible Updates', but NOT listed under 'Updates Performed'.\n\n2. There should be no errors in the SSM log file.",
+      "keywords": [
+        "after",
+        "installation",
+        "complete,",
+        "check",
+        "folder)",
+        "verify"
+      ]
+    },
+    {
+      "name": "SSM Force Install:\n\n1. Run the command once again:\n\n    C:\\SSM><SSM.exe <SSM_Path>  /a /d /f /log:<SSM_Path> \n\n    Example: C:\\SSM > SSM.exe C:\\SSM /a /d /f /log:C:\\SSM\n\n2.  Locate and open the SSMTrace log file, and ensure at the bottom it says: the .cva file is older than or the same as the installed version.",
+      "expected": "1. After the SSM installation is complete, check the log file (on the C:\\SSM folder) and verify that the deliverable is listed under 'Possible Updates', as well as listed under 'Updates Performed', in the SSM log file.\n\n2. There should be no errors in the SSM log file.",
+      "keywords": [
+        "after",
+        "installation",
+        "complete,",
+        "check",
+        "c:\\ssm",
+        "folder)"
+      ]
+    },
+    {
+      "name": "Note:\n\n1. For more information on this test case, please look in the full functional test plan for the deliverable-under-test.\n\n2. Make sure to save the Passing or Failing LOG file after the Test is complete. (This is for Testing History if there are any questions about our Testing results Downstream)\n\n3. Requirement: 2 SoftPaqs. (1st SoftPaq SP12345.exe will be the one under test, 2nd SoftPaq SPxxxxx.exe. will be tested together with the 1st SoftPaq in SSM mode. The 2nd SoftPaq could be any SoftPaq that already got SMR'ed before and must be targeted with the platform you are testing. Please obtain the 2nd SoftPaq from your Test Lead to do this test.)",
+      "expected": "Noted.",
+      "keywords": [
+        "noted."
+      ]
+    },
+    {
+      "name": "1. The CVA files need to be placed in the same folder as the deliverable's executable. (Ex: setup.exe, etc...) \n\n2. Install latest version of SSM tool on the UUT.\n\n3. Copy the latest version of SSM.exe and SSM.CAB from the SSM install path, to the root directory of C:\\ in a folder named SSM.\n\n4. Navigate to deliverables under test (..\\{Deliverables' Name}\\) and copy the entire folders of both deliverables {Deliverables' Name} to C:\\\n\n5. Open the Command Prompt (Vista/Win7- run as Administrator)\n\n6. Run the following command (underscores are spaces):\n     \n    C:\\SSM><SSM.exe <SSM_Path>  /a /d /log:<SSM_Path> \n\n    Example: C:\\SSM > SSM.exe C:\\SSM /a /d /log:C:\\SSM\n\n7. Check the SSM log files (in the C:\\SSM folder) for errors",
+      "expected": "1.  After the SSM installation is complete, check the log file (C:\\SSM folder) and verify that both deliverables are listed under 'Possible Updates', as well as listed under 'Updates Performed'._x000D_\n_x000D_\n2.  Check the SSM log files (C:\\SSM folder) for errors, there should be none._x000D_\n_x000D_\n3.  Verify both deliverables are installed.",
+      "keywords": [
+        "after",
+        "installation",
+        "complete,",
+        "check",
+        "(c:\\ssm",
+        "folder)"
+      ]
+    },
+    {
+      "name": "1.  Uninstall the deliverable-under-test from the system from Control Panel -> Programs -> Programs and Features.\n\n2.  Install an older version of the software onto the system.\n\n3.  Reboot the unit.\n\n4. Copy Deliverable SoftPaq to UUT\n\n5. Locate and launch Deliverable SoftPaq.\n\n6. Follow the on-screen prompts (XP)\n\n     a)  First screen displayed is a welcome screen with deliverable information - English is expected.\n\n     b)  Second screen displayed is License Agreement, tester must agree before Next button is enabled - English is expected.\n\n     c)  Third screen is Save files in folder, Default path is c:\\swsetup\\<softpaq number> - English is expected.\n\n     d)  Deliverable should begin installation process by launching InstallShield. - All screens from this point should be localized to the OS.\n\nFollow the on-screen prompts (Vista and Windows 7):\n\n     a)  First screen displayed is a User Account Control message box. Click \"Yes\" to continue installation.\n\n     b)  Second screen displayed is a 'Welcome to the InstallShield Wizard' screen with deliverable information - English is expected. Click 'Next' to continue.\n\n     c)  Third screen displayed is a End User License Agreement, you must agree before Next button is enabled - English is expected. Click 'Next' to continue.\n\n     d)  Fourth screen is Save files in folder, Default path is c:\\swsetup\\<softpaq number> - English is expected. Click 'Next' to continue.\n\n     e)  Deliverable should begin installation process by launching InstallShield. - All screens from this point should be localized to the OS. Please follow the instructions on screen until the application is complete installing.\n\n7. After installation finishes, restart system:\n\na. If \"\"Restart\"\" is \"\"necessary\"\" for the deliverable installation as design, system will prompt to restart, select yes to restart system. \n\nb. If \"\"Restart\"\" is not \"\"necessary\"\" for the deliverable installation as design,\"\" Restart Prompt\"\" will not pop up, restart system manually and notes in comments \"\"not prompt restart and restart system manually\"\".\n\n8. After system restarts, launch the application and make sure it opens without any errors.",
+      "expected": "nan",
+      "keywords": []
+    },
+    {
+      "name": "1.  Uninstall the deliverable-under-test from the system from Control Panel -> Programs -> Programs and Features._x000D_\n_x000D_\n2.  Install an older version of the software onto the system._x000D_\n_x000D_\n3.  Reboot the unit.",
+      "expected": "Older version of the Deliverable is installed.",
+      "keywords": [
+        "older",
+        "version",
+        "deliverable",
+        "installed."
+      ]
+    },
+    {
+      "name": "1. Extract the SP12345:\n\na. Open the Run window: Win key + R.\n\nb. Type in the Run box: C:\\Users\\pea\\Desktop\\SP12345\\SP12345.exe -f C:\\Users\\pea\\Desktop\\SP12345\\new -s -e",
+      "expected": "This will extract the setup.exe of the deliverable from the softpaq package into \"new\" under \"SP12345\" folder in desktop.",
+      "keywords": [
+        "extract",
+        "setup.exe",
+        "deliverable",
+        "softpaq",
+        "package",
+        "\"new\""
+      ]
+    },
+    {
+      "name": "1. Uninstall Deliverable Software from UUT and Restart system. If no deliverable software installed in UUT, skip this step and continue.\n\n2. Copy the SoftPaq SPxxxxx to UUT. Expand the SoftPaq to a location of your choice. (Ex: C:\\SPxxxxx)\n\n3. Open the SoftPaq's *.cva file (use NotePad to view the document).\n\n4. Search in the .cva file for, 'Silent installation instructions'.\n\n5. Copy the string, including all quotes, - and /.\n\n6. Open a Command Prompt, run As an Administrator and navigate to the location where you have extracted the setup.exe from the softpaq package.\n\n7. Right-click and select, 'Paste'.\n\n8. Verify what you pasted in matches the .cva file.\n\n9. Press Enter.\n\n10. Wait for 3-5 minutes for the software to install. (The bigger the application, the longer it will run)\n\n11. Restart the system.",
+      "expected": "1. The software should install in silent mode without any on-screen prompts or popups.\n\n2. Verify you do not get any on-screen prompts or popups during installation.\n\n3. Verify Deliverable was silently upgraded.",
+      "keywords": [
+        "software",
+        "should",
+        "install",
+        "silent",
+        "without",
+        "on-screen"
+      ]
+    },
+    {
+      "name": "1. Make sure deliverable has been installed on UUT.\n\n2. Open Control Panel - Add and Remove Programs \n\n3. Select the deliverable software to uninstall, confirm no abnormaliity/error during uninstallation.\n\n4. After Uninstall is complete, restart system:\n    \n    a. If \"Restart\" is \"necessary\"\" for the deliverable Uninstall as designed, system will prompt to restart, select yes to restart system. \n    \n    b. If \"Restart\" is not \"necessary\" for the deliverable Uninstall as design,\" Restart Prompt\" will not pop up, restart system manually and notes in comments \"not prompt restart and restart system manually\".",
+      "expected": "The software should uninstall from the unit._x000D_\n_x000D_\nCheck if all files and folders are removed, no deliverable list in All Programs, control Panel & Registry (if applicable).",
+      "keywords": [
+        "software",
+        "should",
+        "uninstall",
+        "unit._x000d_",
+        "_x000d_",
+        "check"
+      ]
+    }
+  ]
+}
