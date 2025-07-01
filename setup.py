@@ -12,7 +12,7 @@ CONFIG_PATH = "config"
 PLANS_PATH = "plans"
 DEFAULT_PLAN = "dash_test_plan.json"
 SOFTPAQ_PLAN = "softpaq_test_plan.json"
-PRIVATE_API_KEY = "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"
+#PRIVATE_API_KEY = "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"
 
 # === File Loaders ===
 

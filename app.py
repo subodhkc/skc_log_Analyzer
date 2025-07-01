@@ -229,8 +229,7 @@ if uploaded_file:
 
     if st.button("Download PDF Report with OpenAI"):
         with st.spinner("Generating summary using OpenAI API..."):
-            api_key = os.getenv("OPENAI_API_KEY")
-            ai_summary = ai_rca.analyze_with_ai(redacted_events, redacted_metadata, test_results, api_key=api_key, offline=False)
+            ai_summary = ai_rca.analyze_with_ai(redacted_events, redacted_metadata, test_results, offline=False)
             pdf = report.generate_pdf(redacted_events, redacted_metadata, test_results, recs, user_name=user_name, app_name=app_name, ai_summary=ai_summary)
             st.download_button("Download PDF (OpenAI)", data=pdf, file_name="SKC_Report_OpenAI.pdf", mime="application/pdf")
 

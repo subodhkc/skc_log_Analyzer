@@ -4,6 +4,12 @@ from transformers import pipeline
 import openai
 import traceback
 import logging
+import os
+from dotenv import load_dotenv
+
+# ----- Load .env and API key -----
+load_dotenv()
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # ----- Internal Setup -----
 logging.basicConfig(level=logging.INFO)
@@ -43,11 +49,38 @@ def format_logs_for_ai(events, metadata=None, test_results=None):
 
     return "\n".join(lines)
 
-def analyze_with_ai(events, metadata=None, test_results=None, api_key=None, offline=True):
+def analyze_with_ai(events, metadata=None, test_results=None, offline=True):
     prompt = (
-        "You are a senior QA systems expert. Analyze the following log extracts and provide a summary of any "
-        "critical issues, root causes, and proposed remediations. Focus on install/configuration issues.\n\n"
-    )
+ 
+    "You are a senior QA automation engineer and SME on LOG and expert in log diagnostics.\n"
+    "You are reviewing system provisioning or installation logs from BIOS updates, firmware flashing, OS imaging, or agent deployments.\n\n"
+
+    "Your task is to analyze the logs and produce a structured root cause analysis (RCA) report for technical stakeholders.\n"
+    "Be concise, evidence-driven, and avoid speculative assumptions.\n\n"
+
+    "Respond in markdown format with the following sections:\n\n"
+    "1. **Log Overview**  \n"
+    "Summarize the system operations observed in the logs — including install attempts, reboots, service changes, etc.\n\n"
+
+    "2. **Key Events (ERROR/CRITICAL)**  \n"
+    "List up to 5 major ERROR or CRITICAL entries. Include timestamp, component, and brief description.\n\n"
+
+    "3. **Root Cause Analysis**  \n"
+    "Explain what most likely caused the failure(s). Use logic based only on log content.\n\n"
+
+    "4. **Suggested Fixes or Next Steps**  \n"
+    "Give practical recommendations to the engineer — what should they try next?\n\n"
+
+    "5. **Severity & Impact Rating**  \n"
+    "Rate the severity as LOW / MEDIUM / HIGH and justify your assessment.\n\n"
+
+    "6. **Additional Suggestions**  \n"
+    "If the logs are limited, unclear, or missing key stages, suggest what additional inputs (e.g., earlier boot logs, BIOS settings, version details, full install logs) would help you give a better RCA.\n\n"
+
+    "If no serious issues are detected, say so — and still provide useful next steps.\n"
+    "Keep your answer structured, clean, and technical. Use bullet points for lists when helpful.\n\n"
+)
+ 
     log_text = format_logs_for_ai(events, metadata, test_results)
     safe_prompt = log_text[:1024]
     prompt += safe_prompt
@@ -65,9 +98,9 @@ def analyze_with_ai(events, metadata=None, test_results=None, api_key=None, offl
             return "Offline model failed. Try enabling OpenAI fallback if available."
 
     # ----- OPENAI MODE -----
-    if api_key:
+    if OPENAI_API_KEY:
         try:
-            openai.api_key = api_key
+            openai.api_key = OPENAI_API_KEY
             logger.info("Using OpenAI for RCA...")
             response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
@@ -81,9 +114,11 @@ def analyze_with_ai(events, metadata=None, test_results=None, api_key=None, offl
         except Exception as e:
             logger.error(f"OpenAI RCA failed: {traceback.format_exc()}")
             return f"OpenAI RCA failed: {e}"
+    else:
+        logger.warning("No OpenAI API key found in environment.")
 
     # ----- FAILOVER -----
-    return "No valid AI engine configured. Please set an API key or enable offline LLM."
+    return "No valid AI engine configured. Please set OPENAI_API_KEY in .env or enable offline mode."
 
 # For standalone testing only
 if __name__ == "__main__":
@@ -101,4 +136,6 @@ if __name__ == "__main__":
     ]
     dummy_meta = {"OS": "Win25H2", "Build": "26000"}
     dummy_results = [{"Step": "Install BIOS", "Status": "Fail", "Actual Result": "BIOS not detected"}]
-    print(analyze_with_ai(dummy_logs, dummy_meta, dummy_results, offline=True))
+
+    print("\n=== RCA Output ===")
+    print(analyze_with_ai(dummy_logs, dummy_meta, dummy_results, offline=False))

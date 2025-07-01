@@ -46,15 +46,16 @@ def generate_pdf(events, metadata, test_results, recommendations, user_name, app
         pdf.cell(0, 8, sanitize(f"{key}: {value}"), ln=True)
     pdf.ln(5)
 
-    # Timeline (Condensed to Errors Only)
+    # Timeline (Condensed to Errors Only, Max 5)
     error_events = [ev for ev in events if ev.severity in ["ERROR", "CRITICAL"]]
     pdf.set_font("Arial", 'B', 12)
-    pdf.cell(0, 10, sanitize("Key Events Timeline (ERROR/CRITICAL only):"), ln=True)
+    pdf.cell(0, 10, sanitize("Key Events Timeline (Top 5 ERROR/CRITICAL):"), ln=True)
     pdf.set_font("Arial", '', 10)
-    for ev in error_events:
-        line = f"[{ev.timestamp}] {ev.component} - {ev.severity}: {ev.message}"
-        pdf.cell(0, 8, sanitize(line), ln=True)
-    if not error_events:
+    if error_events:
+        for ev in error_events[:5]:
+            line = f"[{ev.timestamp}] {ev.component} - {ev.severity}: {ev.message}"
+            pdf.cell(0, 8, sanitize(line), ln=True)
+    else:
         pdf.cell(0, 8, sanitize("No ERROR or CRITICAL events found."), ln=True)
     pdf.ln(5)
 
@@ -91,7 +92,7 @@ def generate_pdf(events, metadata, test_results, recommendations, user_name, app
     # AI Summary
     if ai_summary:
         pdf.set_font("Arial", 'B', 12)
-        pdf.cell(0, 10, sanitize("AI-Generated Root Cause Summary:"), ln=True)
+        pdf.cell(0, 10, sanitize("Root Cause Summary:"), ln=True)
         pdf.set_font("Arial", '', 10)
         pdf.multi_cell(0, 8, sanitize(ai_summary))
         pdf.ln(5)
@@ -128,8 +129,8 @@ def generate_text_summary(events, metadata, test_results, recommendations):
         lines.append(f"{key}: {value}")
 
     error_events = [ev for ev in events if ev.severity in ["ERROR", "CRITICAL"]]
-    lines.append("\n=== Key Events (ERROR/CRITICAL only) ===")
-    for ev in error_events:
+    lines.append("\n=== Key Events (Top 5 ERROR/CRITICAL only) ===")
+    for ev in error_events[:5]:
         lines.append(f"[{ev.timestamp}] {ev.component} - {ev.severity}: {ev.message}")
     if not error_events:
         lines.append("No critical issues detected.")
