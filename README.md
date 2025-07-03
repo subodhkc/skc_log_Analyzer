@@ -2,7 +2,7 @@
 
 SKC Log Reader is a modular log analysis tool built using Python + Streamlit. Designed for TPMs and QA engineers, it helps identify root causes behind provisioning failures (BIOS, SoftPaqs, Fusion, OS mismatches, etc.) across Windows-based systems.
 
-
+“This tool is developed and maintained by Subodh Kc, It does not store or access internal data unless shared by the user. Participation is voluntary and exploratory.”
 
 ## 🔍 Key Features
 - Upload ZIP logs and parse events across multiple files
